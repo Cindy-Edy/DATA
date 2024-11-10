@@ -6,52 +6,73 @@
     <title>Catatan Keuangan</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            background-image: url:'';
-            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
             color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
         }
         h1, h2, h3 {
             text-align: center;
+            color: #4CAF50;
         }
         .container {
-            max-width: 600px;
+            max-width: 97%;
             margin: auto;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.01);
         }
         input, button, select {
-            width: 92%;
-            padding: 10px;
+            width: 97%;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
         }
         button {
             background-color: #28a745;
             color: white;
             border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
         }
         .transaction-list {
             margin-top: 20px;
+            border-radius: 10px;
         }
         .transaction {
             display: flex;
             justify-content: space-between;
-            background-color: #f8f9fa;
-            padding: 10px;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 12px;
             border-bottom: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .transaction:hover {
+            background-color: #f1f1f1;
         }
         .transaction.expense {
             color: red;
         }
         .transaction.income {
             color: green;
+        }
+        .transaction span {
+            font-size: 16px;
         }
         footer {
             text-align: center;
@@ -62,6 +83,19 @@
             background-color: red;
             color: white;
             margin-top: 20px;
+            font-weight: bold;
+        }
+        /* Responsive untuk layar kecil */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            input, button, select {
+                font-size: 14px;
+            }
+            .transaction span {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -69,7 +103,7 @@
     <!-- Form Login -->
     <div class="container" id="login-container">
         <h1>Catatan Keuangan</h1>
-        <h2>Pembuat: Edy Sahputra</h2>
+        <h2>Pembuat: Edy & Cindy</h2>
         <input type="text" id="userId" placeholder="Masukkan ID Anda">
         <button onclick="login()">Login</button>
     </div>
@@ -77,9 +111,9 @@
     <!-- Aplikasi Catatan Keuangan -->
     <div class="container" id="app-container" style="display:none;">
         <h1>Catatan Keuangan</h1>
-        <h2>Silahkan <span id="displayUserId"></span></h2>
+        <h2>Selamat datang, <span id="displayUserId"></span>!</h2>
 
-        <input type="text" id="desc" placeholder="Deskripsi">
+        <input type="text" id="desc" placeholder="Deskripsi Transaksi">
         <input type="number" id="amount" placeholder="Jumlah">
         <select id="type">
             <option value="income">Uang Masuk</option>
@@ -95,7 +129,7 @@
 
         <button id="logout-btn" onclick="logout()">Logout</button>
 
-        <footer>Catatan Keuangan © 2024 - Edy Sahputra</footer>
+        <footer>Catatan Keuangan © 2024 - Edy & Cindy</footer>
     </div>
 
     <script>
@@ -161,13 +195,13 @@
                 transactionItem.classList.add(transaction.type);
                 transactionItem.innerHTML = `
                     <span>${transaction.desc}</span>
-                    <span>${transaction.amount}</span>
-                    <button onclick="deleteTransaction(${transaction.id})" style="background-color: red; color: white;">Hapus</button>
+                    <span>${formatCurrency(transaction.amount)}</span>
+                    <button onclick="deleteTransaction(${transaction.id})" style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px;">Hapus</button>
                 `;
                 transactionList.appendChild(transactionItem);
             });
 
-            document.getElementById('total-balance').innerText = totalBalance;
+            document.getElementById('total-balance').innerText = formatCurrency(totalBalance);
         }
 
         function deleteTransaction(id) {
@@ -179,6 +213,11 @@
         function clearInputs() {
             document.getElementById('desc').value = '';
             document.getElementById('amount').value = '';
+        }
+
+        function formatCurrency(value) {
+            // Menambahkan titik sebagai pemisah ribuan
+            return 'Rp ' + value.toLocaleString('id-ID', {minimumFractionDigits: 0});
         }
     </script>
 </body>
