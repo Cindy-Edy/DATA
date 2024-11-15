@@ -172,7 +172,11 @@
                 id: Date.now(),
                 desc,
                 amount: type === 'income' ? amount : -amount,
-                type
+                type,
+                timestamp: new Date().toLocaleString('id-ID', {
+                    year: 'numeric', month: 'long', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                })
             };
 
             transactions.push(transaction);
@@ -194,7 +198,7 @@
                 transactionItem.classList.add('transaction');
                 transactionItem.classList.add(transaction.type);
                 transactionItem.innerHTML = `
-                    <span>${transaction.desc}</span>
+                    <span>${transaction.desc} (${transaction.timestamp})</span>
                     <span>${formatCurrency(transaction.amount)}</span>
                     <button onclick="deleteTransaction(${transaction.id})" style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px;">Hapus</button>
                 `;
