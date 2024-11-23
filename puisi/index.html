@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-  background: linear-gradient(145deg, rgba(255, 215, 0, 0.7), rgba(255, 215, 0, 0.3));
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.7), rgba(255, 215, 0, 3));
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
   padding: 30px;
@@ -84,6 +84,27 @@ body {
   pointer-events: none;
   z-index: 100;
 }
+
+/* Tombol kontrol musik dan baca teks */
+.control-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  margin-bottom: 10px;
+}
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
 </style>
 </head>
 <body>
@@ -104,6 +125,11 @@ body {
   </div>
   <p class="signature">Dari, Edy </p>
 </div>
+
+<!-- Tombol Musik -->
+<div class="control-btn" id="music-control">Hentikan Musik</div>
+<!-- Tombol Baca Pesan -->
+<div class="control-btn" id="read-poem" style="top: 80px;">Baca Pesan</div>
 
 <script>
 // Puisi untuk diketik
@@ -138,20 +164,9 @@ function typeWord() {
     poemElement.innerHTML += words[currentWordIndex] + ' ';
     currentWordIndex++;
     setTimeout(typeWord, 200); // Ketik setiap kata setiap 200ms
-  } else {
-    readPoem(); // Setelah puisi selesai diketik, baca puisi
   }
 }
 typeWord();
-
-// Membaca Pesan Otomatis setelah mengetik
-function readPoem() {
-  const speech = new SpeechSynthesisUtterance(poemText);
-  speech.lang = 'id-ID'; // Bahasa Indonesia
-  speech.rate = 1; // Kecepatan bicara
-  speech.pitch = 1; // Nada suara
-  window.speechSynthesis.speak(speech);
-}
 
 // Efek salju
 const snowContainer = document.getElementById('snow');
@@ -179,9 +194,31 @@ function createSnowflake() {
 // Buat salju terus-menerus
 setInterval(createSnowflake, 100);
 
-// Musik otomatis diputar
+// Kontrol Musik
+const musicControl = document.getElementById('music-control');
 const backgroundMusic = document.getElementById('background-music');
 backgroundMusic.play();
+
+musicControl.addEventListener('click', () => {
+  if (backgroundMusic.paused) {
+    backgroundMusic.play();
+    musicControl.textContent = 'Hentikan Musik';
+  } else {
+    backgroundMusic.pause();
+    musicControl.textContent = 'Mainkan Musik';
+  }
+});
+
+// Membaca Pesan
+const readButton = document.getElementById('read-poem');
+
+readButton.addEventListener('click', () => {
+  const speech = new SpeechSynthesisUtterance(poemText);
+  speech.lang = 'id-ID'; // Bahasa Indonesia
+  speech.rate = 1; // Kecepatan bicara
+  speech.pitch = 1; // Nada suara
+  window.speechSynthesis.speak(speech);
+});
 </script>
 </body>
 </html>
