@@ -1,7 +1,6 @@
 const box = document.getElementById('pergeseran');
 const directChildren = box.children.length;
-console.log('Script ini dibuat oleh: Rayys | IG: @rayyarrr');
-console.log('Lihat Script HTML Lainnya di www.feeldream.id');
+console.log('Script ini dibuat oleh: Edy | Cindyr');
 console.log('Total Slide: ', directChildren);
 totalPesan = directChildren;
 
