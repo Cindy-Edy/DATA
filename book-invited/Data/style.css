@@ -161,7 +161,7 @@ table thead td {
 /* Media Queries for All Android Screens */
 @media only screen and (max-width: 600px) {
   #hero {
-    height: 300px;
+    height: 100px;
   }
 
   #hero h1 {
