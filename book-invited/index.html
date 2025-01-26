@@ -6,142 +6,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Utama</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom right, #a7a8ee, #53c5e7);
-            background-image: url("https://images.pexels.com/photos/1172849/pexels-photo-1172849.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-            background-position: cover;
-            background-position: center;
-        }
+    /* Semua layar */
+    * {
+        box-sizing: border-box;
+    }
 
-        #hero {
-            height: 500px;
-            top: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        #hero h3,
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #a7a8ee, #53c5e7);
+        background-image: url("https://images.pexels.com/photos/1172849/pexels-photo-1172849.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+        background-size: cover;
+        background-position: center;
+    }
+
+    #hero {
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #hero h1 {
+        font-size: 4em;
+        margin: 10px 0;
+        text-shadow: 2px 1px 5px white;
+    }
+
+    #hero h3 {
+        margin: 10px 0;
+        font-size: 1.5em;
+        text-shadow: 1px 1px 3px white;
+    }
+
+    #hero button {
+        width: 50%;
+        padding: 10px;
+        font-size: 1em;
+        font-weight: bold;
+        background-color: rgb(12, 131, 12);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 1px 1px 7px white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #hero button:hover {
+        background-color: rgb(10, 100, 10);
+        color: black;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        background-color: #00FFFF;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .navbar .wrapper .logo {
+        font-family: 'Oleo Script', cursive;
+        font-size: 1.5em;
+        color: black;
+    }
+
+    .navbar .wrapper .nav_menu a {
+        font-family: 'Poiret One', cursive;
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+        margin: 0 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar .wrapper .nav_menu a:hover {
+        background-color: #fff;
+    }
+
+    .flower-decoration {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://png.pngtree.com/png-clipart/20230913/original/pngtree-rustic-flower-vector-png-image_11068923.png');
+        background-size: 40%;
+        background-repeat: no-repeat;
+        pointer-events: none;
+    }
+
+    /* Tambahan untuk layar kecil (ponsel) */
+    @media (max-width: 768px) {
         #hero h1 {
-            font-family: 'Poiret One', cursive;
-            text-align: center;
-            text-shadow: 2px 1px 5px white;
-        }
-
-        .hero_container {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #hero h1 {
-            font-size: 4em;
-            margin: 10px 0;
+            font-size: 2.5em;
         }
 
         #hero h3 {
-            margin: 10px 0;
+            font-size: 1.2em;
         }
 
         #hero button {
-            width: 50%;
-            margin: 10px 0;
-            font-family: 'Poiret One', cursive;
-            font-size: 1em;
-            border: none;
-            background-color: rgb(12, 131, 12);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 10px;
-            box-shadow: 1px 1px 7px white;
-            font-weight: bold;
-        }
-
-        #hero button:hover {
-            background-color: rgb(12, 131, 12);
-            color: black;
-            cursor: pointer;
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        a {
-            text-decoration: none;
-            padding: 15px;
-            font-size: 18px;
-            background-color: #2980b9;
-            color: white;
-            border-radius: 10px;
-            transition: background-color 0.3s;
-        }
-
-        a:hover {
-            background-color: #1f618d;
-        }
-
-        .navbar {
-            width: 100vw;
-            height: 70px;
-            background-color: #00FFFF;
-            position: absolute;
-            top: 0;
-            padding: 0 20px;
-        }
-
-        .navbar .wrapper {
-            max-width: 1080px;
-            margin: 0 auto;
-            height: inherit;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 80%;
         }
 
         .navbar .wrapper .logo {
-            font-family: 'Oleo Script', cursive;
-            font-weight: lighter;
-            margin: 0;
+            font-size: 1.2em;
         }
 
         .navbar .wrapper .nav_menu a {
-            font-family: 'Poiret One', cursive;
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
+            font-size: 0.9em;
+            padding: 5px;
+        }
+    }
+
+    /* Tambahan untuk layar sangat kecil */
+    @media (max-width: 480px) {
+        #hero h1 {
+            font-size: 2em;
         }
 
-        .navbar .wrapper .nav_menu a:hover {
-            background-color: #00FFFF;
-            padding: 5px 10px;
-            border-radius: 10px;
+        #hero h3 {
+            font-size: 1em;
         }
 
-        .flower-decoration {
-            position: absolute;
-            top: 35px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://png.pngtree.com/png-clipart/20230913/original/pngtree-rustic-flower-vector-png-image_11068923.png'); /* Replace with your flower image URL */
-            background-size: 40%;
-            background-repeat: no-repeat;
-            pointer-events: none;
+        .navbar .wrapper {
+            flex-direction: column;
+            text-align: center;
         }
-    </style>
+
+        .navbar .wrapper .nav_menu a {
+            margin: 5px 0;
+        }
+    }
+</style>
+
 </head>
 
 <body>
