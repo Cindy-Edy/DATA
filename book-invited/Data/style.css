@@ -153,17 +153,13 @@ table thead td {
   right: 0;
   bottom: 0;
   background-image: url('https://png.pngtree.com/png-clipart/20230913/original/pngtree-rustic-flower-vector-png-image_11068923.png');
-  background-size: 30%;
+  background-size: 45%;
   background-repeat: no-repeat;
   pointer-events: none;
 }
 
-/* Media Queries for All Android Screens */
-  /* Tambahan untuk layar kecil (ponsel) */
+/* Tambahan untuk layar kecil (ponsel) */
     @media (max-width: 768px) {
-        #hero {
-            height: 200px;
-        }
         #hero h1 {
             font-size: 2.5em;
         }
@@ -188,9 +184,6 @@ table thead td {
 
     /* Tambahan untuk layar sangat kecil */
     @media (max-width: 480px) {
-        #hero {
-            height: 200px;
-        }
         #hero h1 {
             font-size: 2em;
         }
