@@ -32,8 +32,17 @@ async function loadData(page) {
     if (tableBody) {
         tableBody.innerHTML = ''; // Kosongkan tabel sebelum mengisi ulang
     }
-
-    guests.forEach(guest => {
+  if(page === 'not-attending'){
+     guests.forEach(guest => {
+        const [timestamp, nama, alamat, pesan, status, tandaTangan] = guest;
+         if (!status || status.toLowerCase() !== 'hadir') {
+              notAttendingCount++;
+             filteredGuests.push(guest);
+        }
+       invitedCount++;
+     });
+  } else {
+     guests.forEach(guest => {
         const [timestamp, nama, alamat, pesan, status, tandaTangan] = guest;
 
         if (status && status.toLowerCase() === "hadir") {
@@ -48,12 +57,11 @@ async function loadData(page) {
             filteredGuests.push(guest);
         } else if (page === 'attending' && status && status.toLowerCase() === 'hadir') {
             filteredGuests.push(guest);
-        } else if (page === 'not-attending' && status && status.toLowerCase() === 'tidak hadir') {
-            filteredGuests.push(guest);
         }
     });
+   }
     if (tableBody) {
-        filteredGuests.forEach(guest => {
+         filteredGuests.forEach(guest => {
             const [timestamp, nama, alamat, pesan, status, tandaTangan] = guest;
             let row = document.createElement('tr');
             let timestampCell = document.createElement('td');
@@ -75,32 +83,34 @@ async function loadData(page) {
 
             statusCell.textContent = status ? status : 'Belum Konfirmasi';
 
-             if(tandaTangan){
-                if (tandaTangan.startsWith('data:image')) {
+            if(tandaTangan){
+               if (tandaTangan.startsWith('data:image')) {
                      const img = document.createElement('img');
                         img.src = tandaTangan;
                         img.style.maxWidth = '100px';
+                        img.style.height = 'auto';
                     tandaTanganCell.appendChild(img);
-                    } else {
-                        tandaTanganCell.textContent = 'Tanda Tangan Tidak Valid'
-                     }
-
-              }
-
+                 } else {
+                       tandaTanganCell.textContent = 'Tanda Tangan Tidak Valid'
+                  }
+             }
 
             row.appendChild(timestampCell);
             row.appendChild(namaCell);
             if (alamat) {
                 row.appendChild(alamatCell);
             }
-            if (tandaTangan) {
+              if (tandaTangan) {
                 row.appendChild(tandaTanganCell);
             }
             if (pesan) {
                 row.appendChild(pesanCell);
             }
-            row.appendChild(statusCell);
-            tableBody.appendChild(row);
+
+           if(page !== 'not-attending'){
+                 row.appendChild(statusCell);
+            }
+             tableBody.appendChild(row);
         });
     }
 
