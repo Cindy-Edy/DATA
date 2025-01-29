@@ -1,0 +1,214 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 45px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-3px);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #343a40;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #218838;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.box {
+    text-align: center;
+    padding: 28px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 30%;
+    transition: all 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.02);
+}
+
+
+.invited {
+    background-color: #e7f5ff;
+    color: #007bff;
+}
+
+.attending {
+    background-color: #e8f8f5;
+    color: #28a745;
+}
+
+.not-attending {
+    background-color: #ffebee;
+    color: #dc3545;
+}
+
+.box h2 {
+    margin: 10px 0 0;
+    font-size: 3.2em;
+    font-weight: bold;
+}
+.chart-container{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+#attendanceChart{
+    width: 100% !important;
+    max-width: 500px;
+    max-height: 300px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 35px;
+    background-color: #fff;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 16px;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form Styling */
+.form-container {
+    margin-bottom: 35px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    transition: border-color 0.3s ease;
+}
+ .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+     outline: none;
+    border-color: #28a745;
+}
+.form-container button{
+    background-color: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+      transition: background-color 0.3s ease;
+}
+.form-container button:hover{
+      background-color: #218838;
+}
+/* Canvas Styling */
+#signatureCanvas {
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    cursor: crosshair;
+    margin-bottom: 10px;
+}
+#clearCanvasButton{
+      background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+     border: none;
+    border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+}
+#clearCanvasButton:hover{
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .summary {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+       nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav a{
+        margin-bottom: 10px;
+    }
+    .form-group{
+       margin-bottom: 12px;
+    }
+}
