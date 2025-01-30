@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK4R7Pg7cz4BjrSWjLeuzcHBTrTuDJBXLBGQ&s');
+     background: rgb(142, 228, 206); /* White background for container */
     background-size: cover; /* Menutupi seluruh layar */
     background-repeat: no-repeat;
     color: #343a40;
